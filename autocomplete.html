@@ -5,39 +5,39 @@
   <title>Autocomplete Comune</title>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD2K5UZpxiWF9y4qIGTTgxD7QfaaBVxtnw&libraries=places"></script>
   <style>
-    body {{
+    body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 10px;
-    }}
-    input {{
+    }
+    input {
       width: 100%;
       padding: 8px;
       font-size: 16px;
       box-sizing: border-box;
-    }}
+    }
   </style>
 </head>
 <body>
   <input id="autocomplete" type="text" placeholder="Inserisci comune...">
   <script>
     const input = document.getElementById("autocomplete");
-    const autocomplete = new google.maps.places.Autocomplete(input, {{
+    const autocomplete = new google.maps.places.Autocomplete(input, {
       types: ['(cities)'],
-      componentRestrictions: {{ country: "it" }}
-    }});
+      componentRestrictions: { country: "it" }
+    });
 
-    autocomplete.addListener("place_changed", () => {{
+    autocomplete.addListener("place_changed", () => {
       const place = autocomplete.getPlace();
-      if (place.geometry) {{
-        const coords = {{
+      if (place.geometry) {
+        const coords = {
           lat: place.geometry.location.lat(),
           lng: place.geometry.location.lng(),
           nome: place.formatted_address
-        }};
+        };
         parent.postMessage(coords, "*");
-      }}
-    }});
+      }
+    });
   </script>
 </body>
 </html>
